@@ -1,0 +1,21 @@
+{
+  "name": "cat-shelter",
+  "version": "1.0.0",
+  "description": "SoftUni JS Back End Course Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Denislav883/cat-shelter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Denislav883/cat-shelter/issues"
+  },
+  "homepage": "https://github.com/Denislav883/cat-shelter#readme"
+}
