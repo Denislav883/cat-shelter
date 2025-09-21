@@ -19,7 +19,15 @@ const server = http.createServer(async (req, res) => {
             const newCat = Object.fromEntries(searchParams.entries());
 
             cats.push(newCat);
+
+            res.writeHead(302, {
+                "location": "/"
+            });
+
+            res.end();
         });
+
+        return;
     }
 
     switch (req.url) {
@@ -64,7 +72,13 @@ function readFile(path) {
 async function homeView() {
     const html = await readFile("./src/views/home/index.html");
 
-    const catsHtml = cats.map(cat => catTemplate(cat)).join("\n");
+    let catsHtml ="";
+    
+    if(cats.length > 0) {
+        catsHtml = cats.map(cat => catTemplate(cat)).join("\n");
+    } else {
+        catsHtml = "<span>There are no cats.</span>"
+    }
 
     const result = html.replace("{{cats}}", catsHtml);
 
