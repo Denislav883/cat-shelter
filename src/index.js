@@ -14,6 +14,8 @@ const server = http.createServer(async (req, res) => {
 
             res.write(homeHtml);
     } else if(req.url === "/styles/site.css") {
+        const siteCss = await fs.readFile("./src/styles/site.css", {encoding: "utf-8"});
+
         res.writeHead(200, {
             "content-type": "text/css"
         })
