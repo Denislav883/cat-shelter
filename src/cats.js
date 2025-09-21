@@ -26,5 +26,5 @@ export default [
     name: "Garry",
     breed: "Bombay Cat",
     description: "Mysterious and elegant. Often found lounging in sunny spots."
-   },
+   }
 ];

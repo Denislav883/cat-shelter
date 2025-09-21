@@ -1,7 +1,7 @@
 import http from "http";
 import fs from "fs/promises"
 
-import cats from "./cats.js"
+import { getCats, saveCat } from "./data.js"
 
 const server = http.createServer(async (req, res) => {
     let html;
@@ -13,12 +13,12 @@ const server = http.createServer(async (req, res) => {
             data += chunk.toString();
         });
 
-        req.on("end", () => {
+        req.on("end", async () => {
             const searchParams = new URLSearchParams(data);
 
             const newCat = Object.fromEntries(searchParams.entries());
 
-            cats.push(newCat);
+            await saveCat(newCat);
 
             res.writeHead(302, {
                 "location": "/"
@@ -71,7 +71,8 @@ function readFile(path) {
 
 async function homeView() {
     const html = await readFile("./src/views/home/index.html");
-
+    const cats = await getCats();
+    
     let catsHtml ="";
     
     if(cats.length > 0) {
